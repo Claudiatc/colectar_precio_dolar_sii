@@ -34,9 +34,11 @@ dolar = ColectDolarSII(name='Clau', metadata=metadata)
 ws = dolar.construir_pag_web(anios)
 df = dolar.colectar_remodelar_dolar(ws)
 
-# df = mes_to_month(df)
-#+
-# df = remplazar_coma_punto(df)
+# en este caso se remplazan los valores de mes en español al inglés por necesidades particulares del proyecto
+df = mes_to_month(df, 'month')
+
+
+df = remplazar_coma_punto(df)
 #
 
 df.to_feather('data/dolar_hist.feather')
