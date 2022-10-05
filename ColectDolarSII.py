@@ -47,12 +47,12 @@ class ColectDolarSII:
             return website
 
     def remodelar_tabla(self, tabla, driver):
-        print('la tabla recopilada en SII es dinámica, contiene en la última fila el total o mean de los datos.\n'
-              'Por esta razón, se remodelan los datos con el propósito de obtener columnas: month, day, year, dolar, mean. \n'
-              'Todas estas columnas están al nivel de día, con excepción de mean que señala el mean mensual')
+        print('la tabla recopilada en SII es dinámica, contiene en la última fila el total o prom de los datos.\n'
+              'Por esta razón, se remodelan los datos con el propósito de obtener columnas: month, day, year, dolar, prom. \n'
+              'Todas estas columnas están al nivel de día, con excepción de prom que señala el prom mensual')
 
         """
-        :param tabla: columnas: días, ene, feb, mar, abr, may... etc. index: 1:31 (días del mes) más 'mean
+        :param tabla: columnas: días, ene, feb, mar, abr, may... etc. index: 1:31 (días del mes) más 'prom
         |día |ene  |feb  |mar  |abr  |may  |jun  |n    |dic  |
         |----|-----|-----|-----|-----|-----|-----|-----|-----|
         |1   |789.0|789.0|789.0|789.0|789.0|789.0|789.0|789.0|
@@ -62,7 +62,7 @@ class ColectDolarSII:
 
         :return: df: DataFrame
 
-        |dia|month|year|dolar|mean|
+        |dia|month|year|dolar|prom|
         |---|-----|----|-----|--------|
         |1  | ene |2022|789.0|789.9   |
 
@@ -75,13 +75,13 @@ class ColectDolarSII:
         df_reshape = df_reshape.loc[32:, ['month', 'day', 'dolar']]
         df_reshape.day = df_reshape.day + 1
         df_reshape = df_reshape.reset_index(drop=True)
-        # la última fila de cada mes es el mean
+        # la última fila de cada mes es el prom
         df_prom = df_reshape.copy()
         mask = df_prom[df_prom.day == 32]
         df_prom = mask
         df_prom.reset_index(drop=True, inplace=True)
-        df_prom = df_prom.rename(columns={'dolar': 'mean'})
-        df_prom = df_prom.loc[:, ['month', 'mean']]
+        df_prom = df_prom.rename(columns={'dolar': 'prom'})
+        df_prom = df_prom.loc[:, ['month', 'prom']]
 
         # se unen
         df = df_reshape.merge(df_prom, how='outer')
