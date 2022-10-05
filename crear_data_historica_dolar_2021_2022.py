@@ -44,4 +44,3 @@ df = remplazar_coma_punto(df)
 df.to_feather('data/dolar_hist.feather')
 
 
-#%%
