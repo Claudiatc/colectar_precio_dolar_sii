@@ -9,25 +9,26 @@ def crear_dir_data():
             raise
 
 
-def mes_to_month(df):
-    mes_month = {'Ene': 'January',
-                 'Feb': 'February',
-                 'Mar': 'March',
-                 'Abr': 'April',
-                 'May': 'May',
-                 'Jun': 'June',
-                 'Jul': 'July',
-                 'Ago': 'August',
-                 'Sep': 'September',
-                 'Oct': 'October',
-                 'Nov': 'November',
-                 'Dic': 'December'}
-    df['month'] = df.month.replace(mes_month, inplace=True)
+def mes_to_month(df, var):
+    mes_month = {'mes': ['Ene', 'Feb',
+                 'Mar',  'Abr',
+                 'May',  'Jun',
+                 'Jul',  'Ago',
+                 'Sep',  'Oct',
+                 'Nov',  'Dic'],
+                 'month': ['January','February',
+                  'March', 'April',
+                  'May',   'June',
+                  'July',  'August',
+                  'September', 'October',
+                  'November',  'December']}
+    df[var] = df[var].replace(mes_month['mes'], mes_month['month'])
+    return df
 
 
 def remplazar_coma_punto(df):
     df['dolar'] = df.dolar.str.replace(',', '.')
-    df['mean'] = df.mean.str.replace(',', '.')
+    df['prom'] = df.prom.str.replace(',', '.')
     return df
 
 #%%
