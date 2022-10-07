@@ -4,6 +4,7 @@ from functions import *
 
 crear_dir_data()
 
+
 """
 el objetivo del script es crear tablas con formato largo por medio de la recopilación 
 del valor histórico del dolar de la web sii.cl
