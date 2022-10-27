@@ -70,9 +70,9 @@ class ColectarDolarSII:
             return website
 
     def remodelar_tabla(self, tabla, driver):
-        print('la tabla recopilada en SII es dinámica, contiene en la última fila el total o prom de los datos.\n'
-              'Por esta razón, se remodelan los datos con el propósito de obtener columnas: month, day, year, dolar, prom. \n'
-              'Todas estas columnas están al nivel de día, con excepción de prom que señala el prom mensual')
+        # print('la tabla recopilada en SII es dinámica, contiene en la última fila el total o prom de los datos.\n'
+        #       'Por esta razón, se remodelan los datos con el propósito de obtener columnas: month, day, year, dolar, prom. \n'
+        #       'Todas estas columnas están al nivel de día, con excepción de prom que señala el prom mensual')
 
         """
         :param tabla: columnas: días, ene, feb, mar, abr, may... etc. index: 1:31 (días del mes) más 'prom
